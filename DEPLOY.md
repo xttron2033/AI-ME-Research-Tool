@@ -12,7 +12,7 @@
 
 ## 2. Залить проект на GitHub (5 мин)
 
-В VS Code с открытой папкой `StocksProject`:
+В VS Code с открытой папкой `AI-ME-Research-Tool`:
 1. Слева **Source Control** (Ctrl+Shift+G) → **Publish to GitHub** → выберите **Private repository**.
 2. Проверьте на github.com, что в репозитории есть папка `.claude/skills` (скрытые папки тоже должны загрузиться).
 

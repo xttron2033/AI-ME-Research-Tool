@@ -1,4 +1,9 @@
-# AI Markets Analyst
+# AI-ME Research Tool
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-1a365d.svg)](LICENSE)
+![Claude Code skills](https://img.shields.io/badge/Claude_Code-24_skills-d97757)
+![Python 3.12](https://img.shields.io/badge/Python-3.12-3776ab)
+![Streamlit](https://img.shields.io/badge/Streamlit-app-ff4b4b)
 
 **Equity, FX and macro research on demand — as Claude Code skills and as a mobile web app.**
 
@@ -19,6 +24,8 @@ Pick a command, enter a ticker or currency pair, and get an institutional-style 
 **24 skills** in two groups:
 
 ### Equities — `trade-*`
+
+> Equity skills are from **[ai-trading-claude](https://github.com/zubair-trabzada/ai-trading-claude)** by Zubair Trabzada (MIT), included unchanged. This project adds the FX & macro layer, the parallel web engine and the mobile app.
 
 | Command | What it does |
 |---|---|
@@ -86,14 +93,43 @@ flowchart LR
 
 ## Quick start
 
-### In VS Code (Claude Code)
+You need [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) (CLI or the VS Code extension) and a Claude subscription or API key. No other setup — the skills use Claude's built-in web search.
+
+### Option A — use inside this project (2 minutes)
 
 ```bash
-git clone https://github.com/xttron2033/StocksProject.git
+git clone https://github.com/xttron2033/AI-ME-Research-Tool.git
+cd AI-ME-Research-Tool
+claude            # or open the folder in VS Code with the Claude Code extension
 ```
-Open the folder in VS Code and type `/trade-analyze NVDA` or `/fx-analyze EURUSD` in the Claude Code chat. Skills load automatically from `.claude/skills/`.
 
-### Web app, locally
+Then type, for example:
+
+```
+/fx-quick EURUSD USDJPY
+/fx-analyze EURUSD
+/macro-cb FED ECB
+/trade-quick NVDA
+/trade-analyze NVDA
+```
+
+No git? Click **Code → Download ZIP** on this page and unzip it.
+
+### Option B — install the skills globally (available in every project)
+
+```bash
+# macOS / Linux
+mkdir -p ~/.claude/skills && cp -r .claude/skills/* ~/.claude/skills/
+```
+```powershell
+# Windows (PowerShell)
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force .claude\skills\* "$env:USERPROFILE\.claude\skills\"
+```
+
+Restart Claude Code and type `/` to see the commands.
+
+### Option C — run the mobile web app with your own API key
 
 ```bash
 pip install -r requirements.txt
@@ -101,9 +137,7 @@ cp .streamlit/secrets.toml.example .streamlit/secrets.toml   # add your Anthropi
 streamlit run app.py
 ```
 
-### Web app, hosted
-
-Free deployment on Streamlit Community Cloud in about 15 minutes: see **[DEPLOY.md](DEPLOY.md)** (in Russian).
+To host it for free on Streamlit Community Cloud, see **[DEPLOY.md](DEPLOY.md)** (in Russian). You pay for your own API usage; the app shows an estimated cost under every report.
 
 ---
 
@@ -121,7 +155,9 @@ engine.py            skill runner: single-pass + parallel orchestrator, web-sear
 pdf_export.py        Markdown → branded PDF (WeasyPrint)
 requirements.txt     Python dependencies
 packages.txt         system packages for Streamlit Cloud (Pango, DejaVu fonts)
-DEPLOY.md            deployment guide
+DEPLOY.md            deployment guide (RU)
+LICENSE, NOTICE      Apache 2.0 (original parts)
+THIRD_PARTY_NOTICES.md, licenses/   MIT notice for trade-* skills
 ```
 
 ## Configuration (`.streamlit/secrets.toml`)
@@ -144,4 +180,13 @@ DEPLOY.md            deployment guide
 
 > **Disclaimer.** For educational and research purposes only. Nothing in this repository or its output is investment advice or a recommendation to buy or sell any security, currency or derivative. AI-generated analysis can be wrong or out of date — verify independently.
 
-© 2026 Egor Zhilnikov. All rights reserved.
+## Contributing
+
+Issues and pull requests are welcome — especially new skills, better data sources, and fixes to scoring logic. A skill is just a folder with a `SKILL.md`; follow the structure of an existing one. Orchestrator skills need `### PHASE 1/2/3` sections and `#### Agent N:` blocks so the web engine can run them in parallel.
+
+## Credits & license
+
+- `trade-*` equity skills — [ai-trading-claude](https://github.com/zubair-trabzada/ai-trading-claude) © 2026 Zubair Trabzada, MIT License ([text](licenses/ai-trading-claude-MIT.txt)).
+- Everything else — `fx-*` and `macro-*` skills, `app.py`, `engine.py`, `pdf_export.py`, docs — © 2026 Egor Zhilnikov, [Apache License 2.0](LICENSE).
+
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [NOTICE](NOTICE). When redistributing, keep both license texts and the NOTICE file.
