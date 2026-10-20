@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "mcp__Alpha_Vantage_MCP_Server"
+    ]
+  }
+}

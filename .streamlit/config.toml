@@ -1,0 +1,9 @@
+[theme]
+primaryColor = "#1a365d"
+base = "light"
+
+[client]
+toolbarMode = "minimal"
+
+[server]
+runOnSave = false

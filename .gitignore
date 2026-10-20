@@ -1,0 +1,8 @@
+.streamlit/secrets.toml
+reports/
+TRADE-*.md
+TRADE-*.pdf
+__pycache__/
+.venv/
+FX-*.md
+MACRO-*.md
